@@ -66,10 +66,10 @@ module NumericToEnglishConverter
 		rem = number%1000
 		if rem == 0
 			thousand_divisible_string_concat(div)
-		elsif ((number/100) * 10)%100 == 0
-			convert_numeric_to_english(number/1000) + " thousand" + " and " + convert_numeric_to_english(number%100)
 		elsif number%100 == 0
 			hundred_divisible_string_concat(number/100)
+		elsif ((number/100) * 10)%100 == 0
+			convert_numeric_to_english(number/1000) + " thousand" + " and " + convert_numeric_to_english(number%100)
 		else
 			convert_numeric_to_english(number/100) + " hundred" + " and " + convert_numeric_to_english(number%100)
 		end
@@ -119,7 +119,7 @@ module NumericToEnglishConverter
 	end
 
 	def hundred_divisible_string_concat(number)
-		number_to_english_map[number] + " " + number_to_english_map[100]
+		convert_numeric_to_english(number) + " " + number_to_english_map[100]
 	end
 
 	def hundred_multiplier_string_concat(number, rem)
