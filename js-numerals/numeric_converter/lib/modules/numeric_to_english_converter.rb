@@ -13,25 +13,30 @@ module NumericToEnglishConverter
 		}
 	end
 
+	# This method is invoked to convert any numeric number to english
 	def convert_numeric_to_english(number)
-		if number == 100 || number == 1000 || number == 1000000
-			"one " + number_to_english_map[number]
-		elsif number_to_english_map.has_key?(number)
-			number_to_english_map[number]
-		elsif number <= 99
-			number_bw_21_and_99(number)
-		elsif number <= 999
-			number_bw_100_and_999(number)
-		elsif number <= 9999
-			number_bw_1000_and_9999(number)
-		elsif number <= 99999
-			number_bw_10000_and_99999(number)
-		elsif number <= 999999
-			number_bw_100000_and_999999(number)
-		elsif number <= 99999999
-			number_bw_1000000_and_9999999(number)
+		if number.is_a? Integer
+			if number == 100 || number == 1000 || number == 1000000
+				"one " + number_to_english_map[number]
+			elsif number_to_english_map.has_key?(number)
+				number_to_english_map[number]
+			elsif number <= 99
+				number_bw_21_and_99(number)
+			elsif number <= 999
+				number_bw_100_and_999(number)
+			elsif number <= 9999
+				number_bw_1000_and_9999(number)
+			elsif number <= 99999
+				number_bw_10000_and_99999(number)
+			elsif number <= 999999
+				number_bw_100000_and_999999(number)
+			elsif number <= 99999999
+				number_bw_1000000_and_9999999(number)
+			else
+				"Sorry, application could not translate #{number} into english"
+			end
 		else
-			"Sorry, application could not translate #{number} into english"
+			return "Only integer values are allowed."
 		end
 	end
 
@@ -131,6 +136,6 @@ module NumericToEnglishConverter
 	end
 
 	def million_divisible_string_concat(number)
-		number_to_english_map[number] + " " + number_to_english_map[1000000]
+		convert_numeric_to_english(number) + " " + number_to_english_map[1000000]
 	end
 end

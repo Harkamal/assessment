@@ -103,6 +103,10 @@ RSpec.describe NumericToEnglishConverter do
       expect(converter.convert_numeric_to_english(10110100)).to eq('ten million one hundred and ten thousand one hundred')
     end
 
+    it 'converts 21000000 to english' do
+      expect(converter.convert_numeric_to_english(21000000)).to eq('twenty-one million')
+    end
+
     it 'converts 100000000 to english' do
       expect(converter.convert_numeric_to_english(100000000)).to eq('Sorry, application could not translate 100000000 into english')
     end
