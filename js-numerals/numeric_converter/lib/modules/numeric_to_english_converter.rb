@@ -19,7 +19,11 @@ module NumericToEnglishConverter
 		elsif number_to_english_map.has_key?(number)
 			number_to_english_map[number]
 		elsif number <= 99
-			self.number_bw_21_and_99(number)
+			number_bw_21_and_99(number)
+		elsif number <= 999
+			number_bw_100_and_999(number)
+		elsif number <= 9999
+			number_bw_1000_and_9999(number)
 		else
 			"Sorry, application could not translate #{number} into english"
 		end
@@ -36,8 +40,44 @@ module NumericToEnglishConverter
 		end
 	end
 
+	def number_bw_100_and_999(number)
+		div = number/100
+		rem = number%100
+		if rem == 0
+			hundred_divisible_string_concat(div)
+		else
+			hundred_multiplier_string_concat(div, rem)
+		end
+	end
+	
+	def number_bw_1000_and_9999(number)
+		div = number/1000
+		rem = number%1000
+		if rem == 0
+			thousand_divisible_string_concat(div)
+		elsif ((number/100) * 10)%100 == 0
+			convert_numeric_to_english(number/1000) + " thousand" + " and " + convert_numeric_to_english(number%100)
+		elsif number%100 == 0
+			hundred_divisible_string_concat(number/100)
+		else
+			convert_numeric_to_english(number/100) + " hundred" + " and " + convert_numeric_to_english(number%100)
+		end
+	end
 	
 	def tenth_multiplier_string_concat(number, rem)
 		number_to_english_map[number*10] + "-" + number_to_english_map[rem]
+	end
+
+	def hundred_divisible_string_concat(number)
+		number_to_english_map[number] + " " + number_to_english_map[100]
+	end
+
+	def hundred_multiplier_string_concat(number, rem)
+		hundred_divisible_string_concat(number) +
+		" and " + self.convert_numeric_to_english(rem)
+	end
+
+	def thousand_divisible_string_concat(number)
+		convert_numeric_to_english(number) + " " + number_to_english_map[1000]
 	end
 end
