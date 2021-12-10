@@ -46,5 +46,5 @@ If the test suite passes, you'll be ready to run the app in a local server:
 $ rails server
 ```
 
-## Application is deployed for testing.
+## Application is deployed for testing
 [Try here](https://arcane-lake-87430.herokuapp.com/)
