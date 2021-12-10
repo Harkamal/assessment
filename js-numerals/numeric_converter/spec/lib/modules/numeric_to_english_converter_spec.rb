@@ -60,8 +60,51 @@ RSpec.describe NumericToEnglishConverter do
     end
 
     it 'converts 17999 to english' do
-      expect(converter.convert_numeric_to_english(17999)).to eq('Sorry, application could not translate 17999 into english')
+      expect(converter.convert_numeric_to_english(17999)).to eq('seventeen thousand nine hundred and ninety-nine')
     end
 
+    it 'converts 10190 to english' do
+      expect(converter.convert_numeric_to_english(10190)).to eq('ten thousand one hundred and ninety')
+    end
+
+    it 'converts 10001 to english' do
+      expect(converter.convert_numeric_to_english(10001)).to eq('ten thousand one')
+    end
+
+    it 'converts 342251 to english' do
+      expect(converter.convert_numeric_to_english(342251)).to eq('three hundred and forty-two thousand two hundred and fifty-one')
+    end
+    
+    it 'converts 302251 to english' do
+      expect(converter.convert_numeric_to_english(302251)).to eq('three hundred and two thousand two hundred and fifty-one')
+    end
+
+    it 'converts 1300420 to english' do
+      expect(converter.convert_numeric_to_english(1300420)).to eq('one million three hundred thousand four hundred and twenty')
+    end
+
+    it 'converts 1000000 to english' do
+      expect(converter.convert_numeric_to_english(1000000)).to eq('one million')
+    end
+    
+    it 'converts 9000000 to english' do
+      expect(converter.convert_numeric_to_english(9000000)).to eq('nine million')
+    end
+
+    it 'converts 10000000 to english' do
+      expect(converter.convert_numeric_to_english(10000000)).to eq('ten million')
+    end
+
+    it 'converts 10000100 to english' do
+      expect(converter.convert_numeric_to_english(10000100)).to eq('ten million one hundred')
+    end
+
+    it 'converts 10010100 to english' do
+      expect(converter.convert_numeric_to_english(10110100)).to eq('ten million one hundred and ten thousand one hundred')
+    end
+
+    it 'converts 100000000 to english' do
+      expect(converter.convert_numeric_to_english(100000000)).to eq('Sorry, application could not translate 100000000 into english')
+    end
   end
 end
