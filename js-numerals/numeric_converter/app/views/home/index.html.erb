@@ -1,2 +1,11 @@
 <h1>Welcome to Numeric to English converter</h1>
-<h3>Here you can convert the numeric input to English phrase of that number - </h3>
+<h3>Here you can convert the numeric input to English phrase of that number</h3>
+
+<%= form_with url: "/", local: false, method: :get do |form| %>
+    <p>
+        <%= form.label :number, "Convert Number:" %>
+        <%= form.number_field :number %>
+    </p>
+    <p><%= form.submit "Convert" %></p>
+<% end %>
+<div id="translatedNumber"></div>
