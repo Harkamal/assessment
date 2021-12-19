@@ -15,7 +15,7 @@ module NumericToEnglishConverter
 
 	# This method is invoked to convert any numeric number to english
 	def convert_numeric_to_english(number)
-		if number.is_a? Integer
+		if number.is_a?(Integer) && number.between?(0, 10000000)
 			if number == 100 || number == 1000 || number == 1000000
 				"one " + number_to_english_map[number]
 			elsif number_to_english_map.has_key?(number)
@@ -36,7 +36,7 @@ module NumericToEnglishConverter
 				"Sorry, application could not translate #{number} into english"
 			end
 		else
-			return "Only integer values are allowed."
+			return "Only integer values b/w 0 to 10000000 are allowed."
 		end
 	end
 
